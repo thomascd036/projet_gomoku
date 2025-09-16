@@ -1,8 +1,7 @@
 package projet1.gomoku;
 
 /*
- * Code created by Thomas Cohen (Esisar) 
- * open source code
+ * Code created by Thomas Cabanac Diaz (Esisar)
  * */
  
 import projet1.gomoku.controllers.HumanPlayer;
@@ -15,7 +14,7 @@ import projet1.gomoku.gamecore.enums.TileState;
 import projet1.gomoku.gamecore.enums.WinnerState;
 
 public class Game {
-    
+
     /**Lancer une partie entre deux joueurs de Gomoku
      * @param player1 Joueur 1
      * @param player2 Joueur 2
@@ -80,10 +79,69 @@ public class Game {
     }
 
     public static void main(String[] args) {
-       // startMatch(new AI_Sweep(2), new AI_Sweep(2)); // Lancer une partie entre deux IA Sweep
-        //startMatch(new AI_Star(3), new AI_Star(3)); // Lancer une partie entre deux IA Star
-        //startMatch(new AI_Star(2), new AI_Sweep(2)); // Lancer une partie entre une IA Sweep et une IA Star
-        startMatch(new HumanPlayer(), new AI_Random(2)); // Lancer une partie entre un joueur humain et une IA Sweep
+        java.util.Scanner in = new java.util.Scanner(System.in);
+        while (true) {
+            System.out.println("=== Gomoku ===");
+            System.out.println("1) Joueur vs Joueur (HotSeat)");
+            System.out.println("2) Joueur (Blanc) vs IA (Noir)");
+            System.out.println("3) IA (Blanc) vs Joueur (Noir)");
+            /* System.out.println("4) IA Random vs IA MinMax"); */
+            /* System.out.println("5) IA MinMax vs IA Minmax (choix des profondeurs)") */
+            System.out.println("0) Quitter");
+            System.out.print("> ");
+            String choice = in.nextLine().trim();
+
+            switch (choice) {
+                case "1": // HotSeat
+                    startMatch(new HumanPlayer(), new HumanPlayer());
+                    break;
+
+                case "2": { // Humain Blanc vs IA Noir
+                    PlayerController ia =
+                            new projet1.gomoku.controllers.ai.AI_Random();
+                    // ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
+
+                    startMatch(new HumanPlayer(), ia);
+                    break;
+                }
+
+                case "3": { // IA Blanc vs Humain Noir
+                    PlayerController ia =
+                            new projet1.gomoku.controllers.ai.AI_Random();
+                    // ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
+
+                    startMatch(ia, new HumanPlayer());
+                    break;
+                }
+
+                /* case "4": {
+                    PlayerController ia_minmax = new projet1.gomoku.controllers.ai.AI_MinMax(3);
+                    PlayerController ia_random = new projet1.gomoku.controllers.ai.AI_Random();
+
+                    startMatch(ia_minmax, ia_random);
+                } */
+
+                /* case "5": {
+                    System.out.println("Profondeur de l'IA blanche");
+                    String p1 = in.nextLine().trim();
+                    System.out.println("Profondeur de l'IA noire");
+                    String p2 = in.nextLine().trim();
+
+                    PlayerController ia_blanc = new projet1.gomoku.controllers.ai.AI_MinMax(p1);
+                    PlayerController ia_noir = new projet1.gomoku.controllers.ai.AI_MinMax(p2);
+
+                    startMatch(ia_blanc, ia_noir);
+                }; */
+
+                case "0":
+                    System.out.println("Au revoir !");
+                    return;
+
+                default:
+                    System.out.println("Choix invalide.\n");
+            }
+        }
     }
+
 
 }

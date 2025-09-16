@@ -15,7 +15,7 @@ import projet1.gomoku.gamecore.enums.TileState;
 public class AI_Random extends PlayerController {
 
 
-    public AI_Random(int minimaxDepth){
+    public AI_Random(int minmaxDepth){
         
     }
 
