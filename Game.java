@@ -3,7 +3,7 @@ package projet1.gomoku;
 /*
  * Code created by Thomas Cabanac Diaz (Esisar)
  * */
- 
+
 import projet1.gomoku.controllers.HumanPlayer;
 import projet1.gomoku.controllers.PlayerController;
 import projet1.gomoku.controllers.ai.AI_Random;
@@ -85,8 +85,8 @@ public class Game {
             System.out.println("1) Joueur vs Joueur (HotSeat)");
             System.out.println("2) Joueur (Blanc) vs IA (Noir)");
             System.out.println("3) IA (Blanc) vs Joueur (Noir)");
-            /* System.out.println("4) IA Random vs IA MinMax"); */
-            /* System.out.println("5) IA MinMax vs IA Minmax (choix des profondeurs)") */
+            System.out.println("4) IA Random vs IA MinMax");
+            System.out.println("5) IA MinMax vs IA Minmax (choix des profondeurs)");
             System.out.println("0) Quitter");
             System.out.print("> ");
             String choice = in.nextLine().trim();
@@ -97,41 +97,41 @@ public class Game {
                     break;
 
                 case "2": { // Humain Blanc vs IA Noir
-                    PlayerController ia =
-                            new projet1.gomoku.controllers.ai.AI_Random();
-                    // ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
+                    PlayerController ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
 
                     startMatch(new HumanPlayer(), ia);
                     break;
                 }
 
                 case "3": { // IA Blanc vs Humain Noir
-                    PlayerController ia =
-                            new projet1.gomoku.controllers.ai.AI_Random();
-                    // ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
+                    PlayerController ia = new projet1.gomoku.controllers.ai.AI_MinMax(3); // profondeur 3
 
                     startMatch(ia, new HumanPlayer());
                     break;
                 }
 
-                /* case "4": {
+                case "4": {
                     PlayerController ia_minmax = new projet1.gomoku.controllers.ai.AI_MinMax(3);
                     PlayerController ia_random = new projet1.gomoku.controllers.ai.AI_Random();
 
                     startMatch(ia_minmax, ia_random);
-                } */
+                }
 
-                /* case "5": {
+                case "5": {
                     System.out.println("Profondeur de l'IA blanche");
-                    String p1 = in.nextLine().trim();
+                    String s1 = in.nextLine().trim();
                     System.out.println("Profondeur de l'IA noire");
-                    String p2 = in.nextLine().trim();
+                    String s2 = in.nextLine().trim();
+                    int p1 = Integer.parseInt(s1); // régler le problème de la prodondeur qui est toujours 1 !!!
+                    int p2 = Integer.parseInt(s2);
+                    System.out.println(p1);
+                    System.out.println(p1);
 
                     PlayerController ia_blanc = new projet1.gomoku.controllers.ai.AI_MinMax(p1);
                     PlayerController ia_noir = new projet1.gomoku.controllers.ai.AI_MinMax(p2);
 
                     startMatch(ia_blanc, ia_noir);
-                }; */
+                };
 
                 case "0":
                     System.out.println("Au revoir !");
